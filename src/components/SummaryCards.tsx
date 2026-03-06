@@ -6,13 +6,7 @@ interface SummaryCardsProps {
   hasResults: boolean;
 }
 
-function getOverallState(
-  metrics: SummaryMetrics,
-): "OK" | "CAUTION" | "WARNING" | "HIGH_RISK" | "NOT_IPOD_FRIENDLY" {
-  if (metrics.notIpodFriendlyCount > 0) {
-    return "NOT_IPOD_FRIENDLY";
-  }
-
+function getOverallState(metrics: SummaryMetrics): "OK" | "CAUTION" | "WARNING" | "HIGH_RISK" {
   if (metrics.averageScore < 50) {
     return "HIGH_RISK";
   }
@@ -51,9 +45,7 @@ export default function SummaryCards({ metrics, hasResults }: SummaryCardsProps)
   const overallState = hasResults ? getOverallState(metrics) : "OK";
   const gaugeColor = !hasResults
     ? "transparent"
-    : overallState === "NOT_IPOD_FRIENDLY"
-      ? "#dc2626"
-      : overallState === "HIGH_RISK"
+    : overallState === "HIGH_RISK"
         ? "#f97316"
       : overallState === "WARNING"
         ? "#f59e0b"
@@ -63,9 +55,7 @@ export default function SummaryCards({ metrics, hasResults }: SummaryCardsProps)
 
   const gaugeOuterColor = !hasResults
     ? "#d3d1d3"
-    : overallState === "NOT_IPOD_FRIENDLY"
-      ? "#fecaca"
-      : overallState === "HIGH_RISK"
+    : overallState === "HIGH_RISK"
         ? "#fed7aa"
       : overallState === "WARNING"
         ? "#fde2b8"
@@ -173,7 +163,7 @@ export default function SummaryCards({ metrics, hasResults }: SummaryCardsProps)
               </div>
               <div className="score-key-submenu-item">
                 <span className="score-key-submenu-link score-key-not-ipod">
-                  NOT_IPOD_FRIENDLY (FLAC present): DEEP RED
+                  NOT_IPOD_FRIENDLY (file status): DEEP RED
                 </span>
               </div>
             </div>
