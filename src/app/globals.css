@@ -854,13 +854,13 @@ body {
 }
 
 .results-status--high-risk {
-  background: #4f1616;
-  color: #ff9a9a;
+  background: #3f230d;
+  color: #f97316;
 }
 
 .results-status--bad {
-  background: #3f1818;
-  color: #ffb1b1;
+  background: #3b1010;
+  color: #dc2626;
 }
 
 .results-issues {
